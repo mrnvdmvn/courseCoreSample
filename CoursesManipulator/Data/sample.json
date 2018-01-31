@@ -1,0 +1,9 @@
+﻿[
+  {
+    "Id": 1,
+    "Name": "Default",
+    "StartDate": "12:00",
+    "EndDate": "14:00",
+    "Day" : 0
+  }
+]

@@ -1,0 +1,32 @@
+﻿@{
+    ViewBag.Title = "Courses";
+}
+
+@section scripts
+    {
+    <script src="~/lib/angular/angular.js"></script>
+    <script src="js/main.js"></script>
+    <script src="~/js/controllers/courseController.js"></script>
+    <script src="~/js/schedule.js"></script>
+}
+    <div ng-app="courses">
+        <div class="row" data-ng-controller="coursesController">
+            <div class="col-md-3 col-md-offset-3">
+                <div ng-repeat="item in coursesData">
+                    <b>Name : {{item.name}}</b>
+                    <button type="button" class="btn btn-link" ng-click="delete(item.courseId)">Delete</button>
+                    <button type="button" class="btn btn-link" ng-click="edit(item.courseId)">Edit</button>
+                    <br />
+                    <div ng-mouseover="hoverIn(item)" ng-mouseleave="hoverOut()">
+                        <span> Duration : {{item.dayString}} {{item.startDate}} - {{item.endDate}} </span>
+                    </div>
+                </div>
+                <a class="btn btn-default" asp-controller="Course" asp-action="Add">Add Course</a>
+            </div>
+            <div class="col-md-6">
+                <div ng-show="hoverEdit" class="animate-show">
+                    <div id="schedule"></div>
+                </div>
+            </div>
+        </div>
+    </div>

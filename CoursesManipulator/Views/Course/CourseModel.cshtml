@@ -1,0 +1,55 @@
+﻿
+@{
+    ViewBag.Title = "Edit Course";
+    ViewBag.Action = ViewBag.IsEdit ? "/course/edit" : "/course/add";
+}
+@model CourseViewModel
+@section scripts
+{
+
+}
+
+<div class="row">
+    <form id="courseForm" novalidate action="@ViewBag.Action" method="post">
+        <div class="col-lg-10">
+
+            @Html.ValidationSummary()
+
+            @Html.HiddenFor(p => p.CourseId)
+            @Html.HiddenFor(p => p.Day)
+
+            <div class="col-md-4 col-md-offset-4">
+
+                <div class="form-group">
+                    @Html.LabelFor(p => p.Name)
+                    @Html.TextBoxFor(p => p.Name, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(p => p.Name)
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(p => p.StartDate)
+                    @Html.TextBoxFor(p => p.StartDate, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(p => p.StartDate)
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(p => p.EndDate)
+                    @Html.TextBoxFor(p => p.EndDate, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(p => p.EndDate)
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(p => p.DayString)
+                    @Html.DropDownListFor(p => p.DayString,
+                      new SelectList(Enum.GetValues(typeof(EDays))),
+                      "Select Day",
+                      new { @class = "form-control" })
+                    @Html.ValidationMessageFor(p => p.DayString)
+                </div>
+
+                <div class="form-group pull-right">
+                    <input type="submit" class="btn btn-success" value="Save" />
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+
